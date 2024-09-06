@@ -11,8 +11,7 @@ namespace SysPecNSLib
 {
     //private static mysqlcommand comando = Banco.Abrir();
     public class Usuario
-    {
-     
+    {     
         public int Id { get; set; }
         public string? Nome { get; set; }
         public string? Email { get; set; }
@@ -28,8 +27,7 @@ namespace SysPecNSLib
             Nome = nome;
             Email = email;
             Senha = senha;
-            Nivel = nivel;
-            
+            Nivel = nivel;            
         }
         public Usuario(string? nome, string? email, string? senha, Nivel nivel, bool ativo)
         {
@@ -47,8 +45,7 @@ namespace SysPecNSLib
             Senha = senha;
             Nivel = nivel;
             Ativo = ativo;
-        }
-        
+        }        
         public void Inserir() 
         {
             var cmd = Banco.Abrir();
@@ -67,7 +64,6 @@ namespace SysPecNSLib
             {
                 Id = dr.GetInt32(0);
             }
-
         }
         /// <summary>
         /// Obter por Id é um método estático que retorna
@@ -103,12 +99,10 @@ namespace SysPecNSLib
             if(nome == "")
             {
                 comandosSQL.CommandText = "select * from usuarios order by nome";
-
             }
             else
             {
                 comandosSQL.CommandText = $"select * from usuarios where nome LIKE '%{nome}%' order by nome";
-
             }
             var dr = comandosSQL.ExecuteReader();
             while (dr.Read())
@@ -160,14 +154,12 @@ namespace SysPecNSLib
             //cmd.Parameters.Add("spid", MySqlDbType.VarChar).Direction = ParameterDirection.Output;
             //ExecuteNonQuery: quando a procedure não retorna nenhum dado
             cmd.ExecuteNonQuery();
-
             cmd.Connection.Close();
-
         }
         public static void Arquivar(int id)
         {
             var cmd = Banco.Abrir();
-            cmd.CommandType |= CommandType.Text;
+            cmd.CommandType = CommandType.Text;
             cmd.CommandText = $"update usuarios set ativo = 0 where id = {id}";
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
@@ -180,7 +172,6 @@ namespace SysPecNSLib
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
         }
-
         public void Excluir()
         {
             // em geral nada se exclui de uma tabela...
@@ -188,10 +179,6 @@ namespace SysPecNSLib
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = $"delete from usuarios where id = {Id}";
             cmd.ExecuteNonQuery();
-
-
         }
-
-
     }
 }
