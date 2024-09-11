@@ -76,8 +76,6 @@ namespace SysPecNSLib
             {
                 Id = dr.GetInt32(0);
             }
-
-
         }
 
         public static Endereco ObterPorId(int id)

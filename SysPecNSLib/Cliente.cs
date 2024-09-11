@@ -49,7 +49,6 @@ namespace SysPecNSLib
             Data_Nasc = data_Nasc;
             Data_Cad = data_Cad;
             Ativo = ativo;
-
         }
 
         public Cliente(string? nome, string? cpf, string? telefone, string? email, DateTime? data_Nasc, DateTime? data_Cad)
@@ -61,7 +60,6 @@ namespace SysPecNSLib
             Email = email;
             Data_Nasc = data_Nasc;
             Data_Cad = data_Cad;
-
         }
 
         public void Inserir()
@@ -83,8 +81,6 @@ namespace SysPecNSLib
             {
                 Id = dr.GetInt32(0);
             }
-
-
         }
 
         public static Cliente ObterPorId(int id)
@@ -108,7 +104,6 @@ namespace SysPecNSLib
                    dr.GetBoolean(7)//ativo
                    //Endereco.ObterListaPorCliente(dr.GetInt32(0))
                    );
-
             }
             return cliente;
         }
@@ -145,7 +140,6 @@ namespace SysPecNSLib
             }
             //clientes
             return lista;
-
         }
 
         public void Atualizar()
@@ -159,9 +153,7 @@ namespace SysPecNSLib
             cmd.Parameters.AddWithValue("spdatanasc", Data_Nasc);
 
             cmd.ExecuteNonQuery();
-            cmd.Connection.Close();
-
-            
+            cmd.Connection.Close();            
         }
 
         public static void Arquivar(int id)
@@ -181,8 +173,5 @@ namespace SysPecNSLib
             cmd.ExecuteNonQuery();
             cmd.Connection.Close();
         }
-
-
-
     }
 }
