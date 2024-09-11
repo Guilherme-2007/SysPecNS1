@@ -31,11 +31,11 @@
             grbIdentificacao = new GroupBox();
             btnInserePedido = new Button();
             txtIdCliente = new TextBox();
-            label4 = new Label();
             txtCliente = new TextBox();
             txtUsuario = new TextBox();
             label3 = new Label();
             grbItens = new GroupBox();
+            label15 = new Label();
             label10 = new Label();
             txtTotal = new TextBox();
             label9 = new Label();
@@ -69,6 +69,7 @@
             label12 = new Label();
             label13 = new Label();
             label14 = new Label();
+            btnCliente = new Button();
             grbIdentificacao.SuspendLayout();
             grbItens.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvItensPedido).BeginInit();
@@ -76,9 +77,9 @@
             // 
             // grbIdentificacao
             // 
+            grbIdentificacao.Controls.Add(btnCliente);
             grbIdentificacao.Controls.Add(btnInserePedido);
             grbIdentificacao.Controls.Add(txtIdCliente);
-            grbIdentificacao.Controls.Add(label4);
             grbIdentificacao.Controls.Add(txtCliente);
             grbIdentificacao.Controls.Add(txtUsuario);
             grbIdentificacao.Controls.Add(label3);
@@ -102,20 +103,11 @@
             // txtIdCliente
             // 
             txtIdCliente.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtIdCliente.Location = new Point(74, 83);
+            txtIdCliente.Location = new Point(84, 83);
             txtIdCliente.Name = "txtIdCliente";
             txtIdCliente.Size = new Size(65, 27);
             txtIdCliente.TabIndex = 0;
             txtIdCliente.TextChanged += txtIdCliente_TextChanged;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(24, 90);
-            label4.Name = "label4";
-            label4.Size = new Size(44, 15);
-            label4.TabIndex = 3;
-            label4.Text = "Cliente";
             // 
             // txtCliente
             // 
@@ -124,6 +116,7 @@
             txtCliente.Name = "txtCliente";
             txtCliente.Size = new Size(256, 27);
             txtCliente.TabIndex = 1;
+            txtCliente.TextChanged += txtCliente_TextChanged;
             // 
             // txtUsuario
             // 
@@ -143,9 +136,11 @@
             label3.Size = new Size(47, 15);
             label3.TabIndex = 0;
             label3.Text = "Usuario";
+            label3.Click += label3_Click;
             // 
             // grbItens
             // 
+            grbItens.Controls.Add(label15);
             grbItens.Controls.Add(label10);
             grbItens.Controls.Add(txtTotal);
             grbItens.Controls.Add(label9);
@@ -167,6 +162,16 @@
             grbItens.TabIndex = 1;
             grbItens.TabStop = false;
             grbItens.Text = "Itens do Pedido";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.ForeColor = Color.Red;
+            label15.Location = new Point(560, 81);
+            label15.Name = "label15";
+            label15.Size = new Size(20, 15);
+            label15.TabIndex = 13;
+            label15.Text = "R$";
             // 
             // label10
             // 
@@ -459,6 +464,19 @@
             label14.TabIndex = 12;
             label14.Text = "Total";
             // 
+            // btnCliente
+            // 
+            btnCliente.BackColor = SystemColors.Control;
+            btnCliente.FlatAppearance.BorderSize = 0;
+            btnCliente.FlatStyle = FlatStyle.Flat;
+            btnCliente.Location = new Point(6, 86);
+            btnCliente.Name = "btnCliente";
+            btnCliente.Size = new Size(75, 23);
+            btnCliente.TabIndex = 3;
+            btnCliente.Text = "Cliente";
+            btnCliente.UseVisualStyleBackColor = false;
+            btnCliente.Click += btnCliente_Click;
+            // 
             // FrmPedidoNovo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -500,7 +518,6 @@
         private TextBox txtIdPedido;
         private TextBox txtUsuario;
         private TextBox txtCliente;
-        private Label label4;
         private TextBox txtIdCliente;
         private Button btnInserePedido;
         private Button btnAddItem;
@@ -533,5 +550,7 @@
         private DataGridViewTextBoxColumn clnQuantidade;
         private DataGridViewTextBoxColumn clnDescontoItem;
         private DataGridViewTextBoxColumn clnTotalItem;
+        private Label label15;
+        private Button btnCliente;
     }
 }

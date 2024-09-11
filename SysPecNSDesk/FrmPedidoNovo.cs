@@ -13,6 +13,9 @@ namespace SysPecNSDesk
 {
     public partial class FrmPedidoNovo : Form
     {
+        public int ClienteId;
+        public string NomeCliente;
+
         Produto produto;
         public FrmPedidoNovo()
         {
@@ -23,7 +26,6 @@ namespace SysPecNSDesk
         {
             txtUsuario.Text = Program.UsuarioLogado.Id + " - " + Program.UsuarioLogado.Nome;
         }
-
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
@@ -55,6 +57,15 @@ namespace SysPecNSDesk
                 produto = Produto.ObterPorId(txtCodBar.Text);
                 txtDescricao.Text = produto.Descricao;
                 txtValorUnit.Text = produto.ValorUnit.ToString();
+                if (produto.ClasseDesconto == 0)
+                {
+                    txtDescontoItem.Enabled = false;
+                }
+                else
+                {
+                    txtDescontoItem.Enabled = true;
+                    label15.Text += $" {produto.ValorUnit * produto.ClasseDesconto}";
+                }
                 txtValorUnit.ReadOnly = true;
                 txtQuantidade.Focus();
             }
@@ -86,21 +97,47 @@ namespace SysPecNSDesk
             var itens = ItemPedido.ObterListaPorPedido(int.Parse(txtIdPedido.Text));
             dgvItensPedido.Rows.Clear();
             int linha = 0;
+            double desconto = 0;
             double total = 0;
-            foreach (var item  in itens)
+            foreach (var item in itens)
             {
                 dgvItensPedido.Rows.Add();
-                dgvItensPedido.Rows[linha].Cells[0].Value = item.Id;
+                dgvItensPedido.Rows[linha].Cells[0].Value = $"#{linha + 1}";
                 dgvItensPedido.Rows[linha].Cells[1].Value = item.Produto.CodBar;
                 dgvItensPedido.Rows[linha].Cells[2].Value = item.Produto.Descricao;
-                dgvItensPedido.Rows[linha].Cells[3].Value = item.ValorUnit;
-                dgvItensPedido.Rows[linha].Cells[4].Value = item.Quantidade;
-                dgvItensPedido.Rows[linha].Cells[5].Value = item.Desconto;
-                dgvItensPedido.Rows[linha].Cells[6].Value = item.ValorUnit * item.Quantidade - item.Desconto;
+                dgvItensPedido.Rows[linha].Cells[3].Value = item.ValorUnit.ToString("#0.00");
+                dgvItensPedido.Rows[linha].Cells[4].Value = item.Quantidade.ToString("#0.000");
+                dgvItensPedido.Rows[linha].Cells[5].Value = item.Desconto.ToString("#0.00");
+                dgvItensPedido.Rows[linha].Cells[6].Value = (item.ValorUnit * item.Quantidade - item.Desconto).ToString("#0.00");
                 linha++;
                 total += item.ValorUnit * item.Quantidade - item.Desconto;
+                desconto += item.Desconto;
             }
-            txtTotal.Text = total.ToString();
+            txtTotal.Text = total.ToString("#0.00");
+            txtDescontoItem.Text = desconto.ToString("#0.00");
+        }
+
+        private void txtCliente_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCliente_Click(object sender, EventArgs e)
+        {
+            FrmBuscaCliente frmBuscaCliente = new();
+            frmBuscaCliente.ShowDialog();
+
+            ClienteId = frmBuscaCliente.ClienteId;
+
+            NomeCliente = frmBuscaCliente.NomeCliente;
+
+            txtIdCliente.Text = ClienteId.ToString();
+            txtCliente.Text = NomeCliente;
         }
     }
 }
