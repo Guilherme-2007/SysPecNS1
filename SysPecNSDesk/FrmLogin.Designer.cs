@@ -61,7 +61,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(156, 23);
             txtEmail.TabIndex = 2;
-            txtEmail.Text = "pedro@gmail.com";
+            txtEmail.Text = "guilhermedsp19@gmail.com";
             // 
             // txtSenha
             // 

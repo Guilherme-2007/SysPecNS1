@@ -142,7 +142,34 @@ namespace SysPecNSLib
             }
             return enderecos;
         }
-        
+
+        public static List<Endereco> ObterListaPorCliente(int ClienteId)
+        {
+            List<Endereco> enderecos = new();
+            var comandosSQL = Banco.Abrir();
+            comandosSQL.CommandType = CommandType.Text;
+            comandosSQL.CommandText = $"select * from enderecos where client_id = {ClienteId}";
+            var dr = comandosSQL.ExecuteReader();
+            while (dr.Read())
+            {
+                enderecos.Add(
+                    new(
+                        dr.GetInt32(0),
+                        Cliente.ObterPorId(dr.GetInt32(1)),
+                        dr.GetString(2),
+                        dr.GetString(3),
+                        dr.GetString(4),
+                        dr.GetString(5),
+                        dr.GetString(6),
+                        dr.GetString(7),
+                        dr.GetString(8),
+                        dr.GetString(9)
+                        )
+                    );
+            }
+            return enderecos;
+        }
+
         //bool
         public void  Atualizar(int id)
         {

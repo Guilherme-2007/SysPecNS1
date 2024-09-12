@@ -64,7 +64,7 @@ namespace SysPecNSDesk
                 else
                 {
                     txtDescontoItem.Enabled = true;
-                    label15.Text += $" {produto.ValorUnit * produto.ClasseDesconto}";
+                    label15.Text = "R$" + (produto.ValorUnit * produto.ClasseDesconto).ToString("#0.00");
                 }
                 txtValorUnit.ReadOnly = true;
                 txtQuantidade.Focus();
@@ -99,6 +99,7 @@ namespace SysPecNSDesk
             int linha = 0;
             double desconto = 0;
             double total = 0;
+            
             foreach (var item in itens)
             {
                 dgvItensPedido.Rows.Add();
@@ -112,9 +113,16 @@ namespace SysPecNSDesk
                 linha++;
                 total += item.ValorUnit * item.Quantidade - item.Desconto;
                 desconto += item.Desconto;
+                
+
             }
             txtTotal.Text = total.ToString("#0.00");
-            txtDescontoItem.Text = desconto.ToString("#0.00");
+            txtDescontoItens.Text = desconto.ToString("#0.00");
+
+            txtSubTotal.Text = (total + desconto).ToString("#0.00");
+            txtTotal.Text = total.ToString("#0.00");
+
+            txtTotal1.Text = (desconto + total).ToString();
         }
 
         private void txtCliente_TextChanged(object sender, EventArgs e)
@@ -138,6 +146,36 @@ namespace SysPecNSDesk
 
             txtIdCliente.Text = ClienteId.ToString();
             txtCliente.Text = NomeCliente;
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescontoItens_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescontoPedido_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDescontoItem_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTotal_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

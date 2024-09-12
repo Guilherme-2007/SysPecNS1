@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             groupBox1 = new GroupBox();
             tabConsultaCliente = new TabControl();
             tabPageBuscar = new TabPage();
@@ -44,10 +44,20 @@
             clnDataNasc = new DataGridViewTextBoxColumn();
             clnAtivo = new DataGridViewCheckBoxColumn();
             tabPageEditar = new TabPage();
+            dgvEnderecos = new DataGridView();
+            clnCEP = new DataGridViewTextBoxColumn();
+            clnLogradouro = new DataGridViewTextBoxColumn();
+            clnNumero = new DataGridViewTextBoxColumn();
+            clnComplemento = new DataGridViewTextBoxColumn();
+            clnBairro = new DataGridViewTextBoxColumn();
+            clnCidade = new DataGridViewTextBoxColumn();
+            clnUF = new DataGridViewTextBoxColumn();
+            clnTipoEndereco = new DataGridViewTextBoxColumn();
             groupBox1.SuspendLayout();
             tabConsultaCliente.SuspendLayout();
             tabPageBuscar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEnderecos).BeginInit();
             SuspendLayout();
             // 
             // groupBox1
@@ -109,14 +119,14 @@
             dgvClientes.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dgvClientes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvClientes.Columns.AddRange(new DataGridViewColumn[] { clnId, clnNome, clnCpf, clnTelefone, clnEmail, clnDataNasc, clnAtivo });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgvClientes.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgvClientes.DefaultCellStyle = dataGridViewCellStyle4;
             dgvClientes.Location = new Point(45, 59);
             dgvClientes.Name = "dgvClientes";
             dgvClientes.ReadOnly = true;
@@ -167,9 +177,9 @@
             // 
             // clnDataNasc
             // 
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            clnDataNasc.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            clnDataNasc.DefaultCellStyle = dataGridViewCellStyle3;
             clnDataNasc.Frozen = true;
             clnDataNasc.HeaderText = "Data de Nascimento";
             clnDataNasc.Name = "clnDataNasc";
@@ -194,11 +204,86 @@
             tabPageEditar.Text = "Editar cadastro";
             tabPageEditar.UseVisualStyleBackColor = true;
             // 
+            // dgvEnderecos
+            // 
+            dgvEnderecos.AllowUserToAddRows = false;
+            dgvEnderecos.AllowUserToDeleteRows = false;
+            dgvEnderecos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvEnderecos.Columns.AddRange(new DataGridViewColumn[] { clnCEP, clnLogradouro, clnNumero, clnComplemento, clnBairro, clnCidade, clnUF, clnTipoEndereco });
+            dgvEnderecos.Location = new Point(56, 435);
+            dgvEnderecos.Name = "dgvEnderecos";
+            dgvEnderecos.ReadOnly = true;
+            dgvEnderecos.RowHeadersVisible = false;
+            dgvEnderecos.Size = new Size(693, 238);
+            dgvEnderecos.TabIndex = 41;
+            // 
+            // clnCEP
+            // 
+            clnCEP.Frozen = true;
+            clnCEP.HeaderText = "CEP";
+            clnCEP.Name = "clnCEP";
+            clnCEP.ReadOnly = true;
+            clnCEP.Width = 80;
+            // 
+            // clnLogradouro
+            // 
+            clnLogradouro.Frozen = true;
+            clnLogradouro.HeaderText = "Logradouro";
+            clnLogradouro.Name = "clnLogradouro";
+            clnLogradouro.ReadOnly = true;
+            clnLogradouro.Width = 200;
+            // 
+            // clnNumero
+            // 
+            clnNumero.Frozen = true;
+            clnNumero.HeaderText = "N°";
+            clnNumero.Name = "clnNumero";
+            clnNumero.ReadOnly = true;
+            clnNumero.Width = 30;
+            // 
+            // clnComplemento
+            // 
+            clnComplemento.Frozen = true;
+            clnComplemento.HeaderText = "Complemento";
+            clnComplemento.Name = "clnComplemento";
+            clnComplemento.ReadOnly = true;
+            // 
+            // clnBairro
+            // 
+            clnBairro.Frozen = true;
+            clnBairro.HeaderText = "Bairro";
+            clnBairro.Name = "clnBairro";
+            clnBairro.ReadOnly = true;
+            // 
+            // clnCidade
+            // 
+            clnCidade.Frozen = true;
+            clnCidade.HeaderText = "Cidade";
+            clnCidade.Name = "clnCidade";
+            clnCidade.ReadOnly = true;
+            clnCidade.Width = 50;
+            // 
+            // clnUF
+            // 
+            clnUF.Frozen = true;
+            clnUF.HeaderText = "UF";
+            clnUF.Name = "clnUF";
+            clnUF.ReadOnly = true;
+            clnUF.Width = 30;
+            // 
+            // clnTipoEndereco
+            // 
+            clnTipoEndereco.Frozen = true;
+            clnTipoEndereco.HeaderText = "Tipo Endereço";
+            clnTipoEndereco.Name = "clnTipoEndereco";
+            clnTipoEndereco.ReadOnly = true;
+            // 
             // FrmConsultaCliente
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(776, 409);
+            ClientSize = new Size(776, 685);
+            Controls.Add(dgvEnderecos);
             Controls.Add(groupBox1);
             Name = "FrmConsultaCliente";
             StartPosition = FormStartPosition.CenterScreen;
@@ -209,6 +294,7 @@
             tabPageBuscar.ResumeLayout(false);
             tabPageBuscar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvClientes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvEnderecos).EndInit();
             ResumeLayout(false);
         }
 
@@ -227,5 +313,14 @@
         private DataGridViewTextBoxColumn clnEmail;
         private DataGridViewTextBoxColumn clnDataNasc;
         private DataGridViewCheckBoxColumn clnAtivo;
+        private DataGridView dgvEnderecos;
+        private DataGridViewTextBoxColumn clnCEP;
+        private DataGridViewTextBoxColumn clnLogradouro;
+        private DataGridViewTextBoxColumn clnNumero;
+        private DataGridViewTextBoxColumn clnComplemento;
+        private DataGridViewTextBoxColumn clnBairro;
+        private DataGridViewTextBoxColumn clnCidade;
+        private DataGridViewTextBoxColumn clnUF;
+        private DataGridViewTextBoxColumn clnTipoEndereco;
     }
 }

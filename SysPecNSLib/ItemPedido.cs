@@ -43,13 +43,14 @@ namespace SysPecNSLib
         public void Inserir()
         {
             var cmd = Banco.Abrir();
-            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
             cmd.CommandText = "sp_itempedido_insert";
             cmd.Parameters.AddWithValue("sppedido_id", IdPedido);
             cmd.Parameters.AddWithValue("spproduto_id", Produto.Id);
             cmd.Parameters.AddWithValue("spquantidade", Quantidade);
             cmd.Parameters.AddWithValue("spdesconto", Desconto);
-            Id = Convert.ToInt32(cmd.ExecuteScalar());
+            cmd.ExecuteNonQuery();
+            //Id = Convert.ToInt32(cmd.ExecuteScalar());
         }
 
         public static List<ItemPedido> ObterListaPorPedido(int id)
