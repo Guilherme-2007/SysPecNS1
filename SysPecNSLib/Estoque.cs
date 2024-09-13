@@ -29,13 +29,13 @@ namespace SysPecNSLib
             DataUltimoMovimento = dataUltimoMovimento;
         }
 
-        public void Inserir()
+       /* public void Inserir()
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = $"insert estoques (quantidade, data_ultimo_movimento) values ('{Quantidade}','{DataUltimoMovimento}')";
             cmd.ExecuteNonQuery();
-        }
+        }*/
 
         public static List<Estoque> ObterLista()
         {
@@ -65,14 +65,14 @@ namespace SysPecNSLib
             return cmd.ExecuteNonQuery() > 0 ? true : false;
         }
 
-        public void Apagar()
+        /*public void Apagar()
         {
             //não é recomendado que se apague nada das tabelas
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = $"delete from estoques where produto = {Produto}";
             cmd.ExecuteNonQuery();
-        }
+        }*/
 
     }
 }

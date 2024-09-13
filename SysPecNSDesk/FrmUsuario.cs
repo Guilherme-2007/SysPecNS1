@@ -156,5 +156,10 @@ namespace SysPecNSDesk
 
             MessageBox.Show(id.ToString());
         }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

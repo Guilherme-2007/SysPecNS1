@@ -255,6 +255,7 @@ namespace SysPecNSDesk
             btnEditar.Text = "&Editar";
             btnEditar.TextImageRelation = TextImageRelation.TextBeforeImage;
             btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += btnEditar_Click;
             // 
             // btnDeletar
             // 
