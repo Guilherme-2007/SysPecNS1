@@ -31,11 +31,9 @@ namespace SysPecNSLib
             }
             catch (Exception)
             {
-
                 throw;
             }
             return cmd;
         }
-
     }
 }
