@@ -10,13 +10,6 @@ namespace SysPecNSLib
 {
     public class Nivel
     {
-        // atributos ()
-
-        // private int id;
-        //private string nome;
-        //private string sigla;
-        //public string Sigla { get { return sigla; } set { sigla = value; } }
-
         //
         //// métodos de acesso (get e set) 
         //    public int Id { get => id; set => id = value; }
@@ -25,7 +18,6 @@ namespace SysPecNSLib
         public int Id{ get; set; }
         public string? Nome { get; set; }
         public string? Sigla { get; set; }
-
         // métodos construtores
         public Nivel(){ }
 
@@ -41,19 +33,15 @@ namespace SysPecNSLib
             Sigla = sigla;
         }
 
-        // métodos (requisitos)
-        /// <summary>
-        /// Método para inserir registro de nível na base de dados
-        /// </summary>
         public void Inserir()
         {
             // conectando com o banco de dados
             var cmd = Banco.Abrir();
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.CommandText = $"insert niveis (nome, sigla) values ('{Nome}','{Sigla}')";
-            cmd.ExecuteNonQuery();
-        
+            cmd.ExecuteNonQuery();        
         }
+
         public static Nivel ObterPorId(int id)
         {
             Nivel nivel = new Nivel();
@@ -70,6 +58,7 @@ namespace SysPecNSLib
             }
             return nivel;        
         }
+
         public static List<Nivel> ObterLista()
         {
             List<Nivel> lista = new List<Nivel>();
@@ -90,15 +79,16 @@ namespace SysPecNSLib
             }
             return lista;
         }
+
         public bool Atualizar() 
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = $"update niveis " +
                 $"set nome = '{Nome}',sigla = '{Sigla}' where id = {Id}";
-            return cmd.ExecuteNonQuery() > 0 ? true : false;
-      
+            return cmd.ExecuteNonQuery() > 0 ? true : false;      
         }
+
         public void Excluir() 
         {
             // em geral nada se exclui de uma tabela...
@@ -106,9 +96,6 @@ namespace SysPecNSLib
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = $"delete from niveis where id = {Id}";
             cmd.ExecuteNonQuery();
-
-
         }
-
     }
 }

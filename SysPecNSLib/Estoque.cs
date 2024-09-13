@@ -16,7 +16,6 @@ namespace SysPecNSLib
 
         public Estoque()
         {
-            
         }
         public Estoque(decimal quantidade, TimeSpan dataUltimoMovimento)
         {
@@ -33,7 +32,7 @@ namespace SysPecNSLib
         public void Inserir()
         {
             var cmd = Banco.Abrir();
-            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandType = CommandType.Text;
             cmd.CommandText = $"insert estoques (quantidade, data_ultimo_movimento) values ('{Quantidade}','{DataUltimoMovimento}')";
             cmd.ExecuteNonQuery();
         }
@@ -42,7 +41,7 @@ namespace SysPecNSLib
         {
             List<Estoque> lista = new List<Estoque>();
             var cmd = Banco.Abrir();
-            cmd.CommandType = System.Data.CommandType.Text;
+            cmd.CommandType = CommandType.Text;
             cmd.CommandText = "select * from estoques";
             var dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -58,9 +57,12 @@ namespace SysPecNSLib
             return lista;
         }
 
-        public void Atualizar()
+        public bool Atualizar()
         {
-
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"update niveis set quantidade = '{Quantidade}',data_ultimo_movimento = '{DataUltimoMovimento}' where produto = {Produto}";
+            return cmd.ExecuteNonQuery() > 0 ? true : false;
         }
     }
 }
