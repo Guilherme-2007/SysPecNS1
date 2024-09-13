@@ -64,5 +64,15 @@ namespace SysPecNSLib
             cmd.CommandText = $"update niveis set quantidade = '{Quantidade}',data_ultimo_movimento = '{DataUltimoMovimento}' where produto = {Produto}";
             return cmd.ExecuteNonQuery() > 0 ? true : false;
         }
+
+        public void Apagar()
+        {
+            //não é recomendado que se apague nada das tabelas
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"delete from estoques where produto = {Produto}";
+            cmd.ExecuteNonQuery();
+        }
+
     }
 }
