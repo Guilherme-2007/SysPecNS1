@@ -99,7 +99,7 @@ namespace SysPecNSDesk
             int linha = 0;
             double desconto = 0;
             double total = 0;
-            
+
             foreach (var item in itens)
             {
                 dgvItensPedido.Rows.Add();
@@ -113,7 +113,7 @@ namespace SysPecNSDesk
                 linha++;
                 total += item.ValorUnit * item.Quantidade - item.Desconto;
                 desconto += item.Desconto;
-                
+
 
             }
             txtTotal.Text = total.ToString("#0.00");
@@ -174,6 +174,11 @@ namespace SysPecNSDesk
         }
 
         private void txtTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvItensPedido_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -316,6 +316,7 @@
             dgvItensPedido.RowHeadersVisible = false;
             dgvItensPedido.Size = new Size(620, 150);
             dgvItensPedido.TabIndex = 0;
+            dgvItensPedido.CellContentClick += dgvItensPedido_CellContentClick;
             // 
             // clnSeq
             // 

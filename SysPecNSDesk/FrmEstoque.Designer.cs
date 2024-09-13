@@ -111,6 +111,7 @@
             btnAtualizar.TabIndex = 8;
             btnAtualizar.Text = "&Atualizar";
             btnAtualizar.UseVisualStyleBackColor = true;
+            btnAtualizar.Click += btnAtualizar_Click;
             // 
             // dgvEstoque
             // 

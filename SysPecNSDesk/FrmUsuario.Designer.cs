@@ -69,6 +69,7 @@ namespace SysPecNSDesk
             dgvUsuarios.Size = new Size(503, 150);
             dgvUsuarios.TabIndex = 1;
             dgvUsuarios.CellClick += dgvUsuarios_CellClick;
+            dgvUsuarios.CellContentClick += dgvUsuarios_CellContentClick;
             // 
             // clnId
             // 
