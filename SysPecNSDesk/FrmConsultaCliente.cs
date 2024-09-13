@@ -20,9 +20,8 @@ namespace SysPecNSDesk
 
         private void FrmConsultaCliente_Load(object sender, EventArgs e)
         {
-            
+
             CarregaGrid();
-            CarregaGrid1();
         }
 
         private void CarregaGrid(string nome = "")
@@ -56,19 +55,19 @@ namespace SysPecNSDesk
 
         }
 
-        private void CarregaGrid1(string nome = "")
+        private void CarregaGridEndereco(int clienteId)
         {
             //Obtem lista de clientes
-            var lista = Endereco.ObterLista(nome);
+            var listaEnderecos = Endereco.ObterListaPorCliente(clienteId);
 
             //Limpa as linhas da tabela antes de consultar as informações de cada campo
             dgvEnderecos.Rows.Clear();
             //contador para alterar o índice a cada cliente da lista
             int cont = 0;
-            foreach (var enderecos in lista)
+            foreach (var enderecos in listaEnderecos)
             {
                 //Adiciona uma nova linha a tabela
-                dgvEnderecos.Rows.Add();
+                int RowIndex = dgvEnderecos.Rows.Add();
 
                 //Preenche a linha com as colunas e seus respectivos dados
                 dgvEnderecos.Rows[cont].Cells[0].Value = enderecos.Cep;
@@ -113,6 +112,12 @@ namespace SysPecNSDesk
             //MessageBox.Show(id.ToString());
 
             this.tabConsultaCliente.SelectedTab = tabPageEditar;
+        }
+
+        private void dgvEnderecos_SelectionChanged(object sender, EventArgs e)
+        {
+            int clienteId = Convert.ToInt32(dgvClientes.Rows[dgvClientes.CurrentRow.Index].Cells[0].Value);
+            CarregaGridEndereco(clienteId);
         }
     }
 }
