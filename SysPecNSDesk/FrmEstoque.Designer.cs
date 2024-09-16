@@ -167,6 +167,7 @@
             Name = "FrmEstoque";
             Tag = "";
             Text = "Estoque";
+            Load += FrmEstoque_Load;
             ((System.ComponentModel.ISupportInitialize)dgvEstoque).EndInit();
             ResumeLayout(false);
             PerformLayout();
