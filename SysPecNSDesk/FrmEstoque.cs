@@ -23,16 +23,16 @@ namespace SysPecNSDesk
             CarregaGrid();
         }
 
-        private void CarregaGrid(string nome = "")
+        private void CarregaGrid()
         {
-            var lista = Produto.ObterLista(nome);
+            var lista = Produto.ObterLista();
             dgvProdutos.Rows.Clear();
             int cont = 0;
             foreach (var produto in lista)
             {
                 dgvProdutos.Rows.Add();
                 dgvProdutos.Rows[cont].Cells[0].Value = produto.Id;
-                dgvProdutos.Rows[cont].Cells[1].Value = produto.CodBarras;
+                dgvProdutos.Rows[cont].Cells[1].Value = produto.CodBar;
                 dgvProdutos.Rows[cont].Cells[2].Value = produto.Descricao;
                 dgvProdutos.Rows[cont].Cells[3].Value = produto.ValorUnit;
                 dgvProdutos.Rows[cont].Cells[4].Value = produto.UnidadeVenda;
@@ -42,55 +42,11 @@ namespace SysPecNSDesk
                 dgvProdutos.Rows[cont].Cells[8].Value = produto.DataCad;
 
                 cont++;
-
-            }
-
-        }
-
-        private void txtBusca_TextChanged(object sender, EventArgs e)
-        {
-            //Se algo for digitado no campo, o texto é utilizado como parâmetro da classe CarregaGrid
-            if (txtBusca.Text.Length > 0)
-            {
-                CarregaGrid(txtBusca.Text);
-            }
-            else
-            {
-                //Se nada for digitado, a classe é executada normalmente e exibe todos os clientes
-                CarregaGrid();
             }
         }
 
-        private void dgvProdutos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-            int id = 0;
-            //Identifica a linha atual(que foi clicada)
-            int posicaoLinha = dgvProdutos.CurrentRow.Index;
-
-            //Atribui o valor da celula 0 da linha atual(id)
-            id = Convert.ToInt32(dgvProdutos.Rows[posicaoLinha].Cells[0].Value);
-
-            txtEntradaEstoque.Clear();
-            //Ativa os campos de entrada no estoque
-            gpEstoque.Enabled = true;
-
-            Produto produto = Produto.ObterPorId(id);
-
-            //Preenche os campos com as informações do produto após obtê-los através do ID
-            txtId.Text = produto.Id.ToString();
-            txtCodBarras.Text = produto.CodBarras;
-            txtDescricao.Text = produto.Descricao;
-            txtUnidadeVenda.Text = produto.UnidadeVenda;
-            txtEstoqueMin.Text = produto.EstoqueMinimo.ToString() + $" {produto.UnidadeVenda}s";
-
-            Estoque estoque = Estoque.ObterPorProduto(id);
-            txtDisponivelEstoque.Text = estoque.Quantidade.ToString();
-
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnInsere_Click(object sender, EventArgs e)
         {
             int id = int.Parse(txtId.Text);
             double entrada = double.Parse(txtDisponivelEstoque.Text);
@@ -99,24 +55,20 @@ namespace SysPecNSDesk
             double estqDisponivel = double.Parse(txtDisponivelEstoque.Text);
             string qtdeEstoqueMin = estqMin.Substring(0, 3);
             double estoqueMin = double.Parse(qtdeEstoqueMin);
-
             if (entrada < estoqueMin && estqDisponivel < estoqueMin)
             {
-                MessageBox.Show($"É necessário inserir no mínimo {txtEstoqueMin.Text} desse produto no estoque.");
+                MessageBox.Show($"Inserir {txtEstoqueMin.Text} desse produto no estoque.");
             }
             else
             {
-
                 Estoque estoque = new(
                     Produto.ObterPorId(id),
                     entrada,
                     DateTime.Now
                     );
-
                 estoque.Atualizar(id, entrada);
-
                 txtId.Clear();
-                txtCodBarras.Clear();
+                txtCodBar.Clear();
                 txtDescricao.Clear();
                 txtUnidadeVenda.Clear();
                 txtEstoqueMin.Clear();
@@ -125,6 +77,33 @@ namespace SysPecNSDesk
 
                 FrmEstoque_Load(sender, e);
             }
+        }
+
+        private void dgvProdutos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvProdutos_DoubleClick(object sender, EventArgs e)
+        {
+            int id = 0;
+
+            int posicaoLinha = dgvProdutos.CurrentRow.Index;
+
+            id = Convert.ToInt32(dgvProdutos.Rows[posicaoLinha].Cells[0].Value);
+
+            txtEntradaEstoque.Clear();
+
+            Produto produto = Produto.ObterPorId(id);
+
+            txtId.Text = produto.Id.ToString();
+            txtCodBar.Text = produto.CodBar;
+            txtDescricao.Text = produto.Descricao;
+            txtUnidadeVenda.Text = produto.UnidadeVenda;
+            txtEstoqueMin.Text = produto.EstoqueMinimo.ToString() + $" {produto.UnidadeVenda}s";
+
+            Estoque estoque = Estoque.ObterPorProduto(id);
+            txtDisponivelEstoque.Text = estoque.Quantidade.ToString();
         }
     }
 }

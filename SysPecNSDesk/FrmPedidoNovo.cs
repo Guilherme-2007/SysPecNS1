@@ -73,23 +73,39 @@ namespace SysPecNSDesk
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-            ItemPedido item = new(
+            double descontoItem = Convert.ToDouble(txtDescontoItem.Text);
+            Produto produto = Produto.ObterPorId(txtCodBar.Text);
+            Estoque estoque = Estoque.ObterPorProduto(produto.Id);
+            double qtdeProduto = double.Parse(txtQuantidade.Text);
+            double maxDesconto = ((produto.ValorUnit * produto.ClasseDesconto) * (double.Parse(txtQuantidade.Text)));
+
+            if (qtdeProduto > estoque.Quantidade)
+            {
+                MessageBox.Show($"Não é possível incluir essa quantidade, há {estoque.Quantidade} {produto.UnidadeVenda}s desse produto disponíveis em estoque.");
+            }
+            else if (descontoItem > maxDesconto)
+            {
+                MessageBox.Show("Não é possível aplicar esse desconto!");
+            }
+            else
+            {
+                ItemPedido item = new(
                 int.Parse(txtIdPedido.Text),
                 produto,
                 produto.ValorUnit,
                 double.Parse(txtQuantidade.Text),
                 double.Parse(txtDescontoItem.Text)
                 );
-            item.Inserir();
-            produto = new();
-            txtDescontoItem.Text = "0";
-            txtDescricao.Clear();
-            txtValorUnit.Text = "0";
-            txtQuantidade.Text = "1";
-            txtCodBar.Clear();
-            txtCodBar.Focus();
-
-            PreencherGridItens();
+                item.Inserir();
+                PreencherGridItens();
+                txtQuantidade.Text = "1";
+                txtDescontoItem.Text = "0";
+                txtDescontoPedido.Text = "0";
+                txtCodBar.Clear();
+                txtDescricao.Clear();
+                txtValorUnit.Clear();
+                produto = new();
+            }
         }
 
         private void PreencherGridItens()
